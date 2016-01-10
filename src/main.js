@@ -9,6 +9,8 @@ var spawn = Promise.promisifyAll(require('cross-spawn'));
 var isWindows = /^win/.test(process.platform);
 require('./lodash-mixins');
 
+console.log('operating system', process.platform);
+
 
 var config = {
     // Kill other processes if one dies
