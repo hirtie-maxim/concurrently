@@ -7,6 +7,7 @@ var _ = require('lodash');
 var chalk = require('chalk');
 var spawn = Promise.promisifyAll(require('cross-spawn'));
 var isWindows = /^win/.test(process.platform);
+var isLinux = /^linux/.test(process.platform);
 require('./lodash-mixins');
 
 console.log('operating system', process.platform);
@@ -259,7 +260,7 @@ function handleClose(streams, children, childrenInfo) {
 
             // Send SIGTERM to alive children
             _.each(aliveChildren, function(child) {
-                if(!isWindows) {
+                if(!isWindows || !isLinux) {
                     child.kill();
                 } else {
                     spawn('taskkill', ["/pid", child.pid, '/f', '/t']);
