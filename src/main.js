@@ -164,7 +164,9 @@ function run(commands) {
 
         var child;
         try {
-            child = spawn(_.head(parts), _.tail(parts));
+            child = spawn(_.head(parts), _.tail(parts), {
+                detached: false
+            });
         } catch (e) {
             logError('', 'Error occured when executing command: ' + cmd);
             logError('', e.stack);
